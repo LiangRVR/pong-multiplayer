@@ -2,7 +2,7 @@
   "name": "pong-multiplayer",
   "version": "1.0.0",
   "description": "Implement a pong multiplayer game using canvas in frontend and node with socketIO in backend",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/LiangRVR/pong-multiplayer/issues"
   },
-  "homepage": "https://github.com/LiangRVR/pong-multiplayer#readme"
+  "homepage": "https://github.com/LiangRVR/pong-multiplayer#readme",
+  "dependencies": {
+    "socket.io": "^4.5.1"
+  }
 }
