@@ -1,7 +1,7 @@
 // Canvas Related
 const canvas = document.createElement("canvas");
 const context = canvas.getContext("2d");
-const socket = io();
+const socket = io("/pong");
 
 let isReferee = false;
 
@@ -112,6 +112,7 @@ function ballMove() {
     ballX,
     ballY,
     score,
+    ballDirection,
   });
 }
 
@@ -169,6 +170,7 @@ function ballBoundaries() {
     ballX,
     ballY,
     score,
+    ballDirection,
   });
 }
 
@@ -212,7 +214,7 @@ function startGame() {
 
 // On Load
 loadGame();
-
+const connection = () => {};
 socket.on("connect", () => {
   console.log("connected as ", socket.id);
 
@@ -229,6 +231,15 @@ socket.on("connect", () => {
   });
 
   socket.on("ballMove", (ballData) => {
-    ({ ballX, ballY, score } = ballData);
+    ({ ballX, ballY, score, ballDirection } = ballData);
   });
+});
+
+socket.io.on("reconnect", () => {
+  console.log("reconnected");
+  loadGame();
+});
+
+socket.on("disconnect", (reason) => {
+  console.log(`Disconnected because ${reason}`);
 });
